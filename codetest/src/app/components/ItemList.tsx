@@ -1,5 +1,6 @@
 import React from "react";
 import { RetrievedDataFromAPI, RetrievedSeriesType } from "../types/Series";
+import ItemCard from "./ItemCard";
 
 export default async function ItemList() {
   const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -15,7 +16,7 @@ export default async function ItemList() {
     <main className="max-w-[80rem]">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 lg:px-0">
         {seriesList && seriesList.length
-          ? seriesList.map((item) => <div key={item.id}>{item.name}</div>)
+          ? seriesList.map((item) => <ItemCard key={item.id} serie={item} />)
           : null}
       </div>
     </main>
