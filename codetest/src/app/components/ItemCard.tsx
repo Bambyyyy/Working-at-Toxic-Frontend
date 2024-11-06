@@ -9,7 +9,7 @@ type Props = {
 
 export default function ItemCard({ serie }: Props) {
   return (
-    <Link href={`/`}>
+    <Link href={`/series/${serie.id}`}>
       <div className="relative aspect-[2/3]">
         <Image
           src={
