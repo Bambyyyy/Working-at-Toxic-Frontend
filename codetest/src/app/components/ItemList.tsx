@@ -1,4 +1,5 @@
 import React from "react";
+import { RetrievedDataFromAPI, RetrievedSeriesType } from "../types/Series";
 
 export default async function ItemList() {
   const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -6,8 +7,8 @@ export default async function ItemList() {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/popular?api_key=${apikey}&language=en-US&page=1`
   );
-  const data = await res.json();
-  const seriesList = data.results;
+  const data: RetrievedDataFromAPI = await res.json();
+  const seriesList: RetrievedSeriesType[] = data.results;
   console.log(seriesList);
 
   return (
