@@ -1,3 +1,9 @@
+import ItemList from "./components/ItemList";
+
 export default function Home() {
-  return <div>StartPage</div>;
+  return (
+    <>
+      <ItemList />
+    </>
+  );
 }

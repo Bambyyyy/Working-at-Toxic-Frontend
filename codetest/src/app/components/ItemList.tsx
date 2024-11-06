@@ -1,0 +1,22 @@
+import React from "react";
+
+export default async function ItemList() {
+  const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/popular?api_key=${apikey}&language=en-US&page=1`
+  );
+  const data = await res.json();
+  const seriesList = data.results;
+  console.log(seriesList);
+
+  return (
+    <main className="max-w-[80rem]">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 lg:px-0">
+        {seriesList && seriesList.length
+          ? seriesList.map((item) => <div key={item.id}>{item.name}</div>)
+          : null}
+      </div>
+    </main>
+  );
+}
