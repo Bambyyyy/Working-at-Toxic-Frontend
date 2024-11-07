@@ -11,7 +11,7 @@ export default function Search() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(query);
-    }, 2000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [query]);
