@@ -2,7 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { RetrievedDataFromAPI, RetrievedSeriesType } from "../types/Series";
 
-type Props = {};
+type Props = {
+  genreSeriesList: RetrievedSeriesType[] | [];
+  setGenreSeriesList: React.Dispatch<
+    React.SetStateAction<RetrievedSeriesType[]>
+  >;
+  seriesList: RetrievedSeriesType[] | [];
+  isFilteredByRelease: boolean;
+  setIsFilteredByRelease: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 type GenreType = {
   id: number;
@@ -13,12 +21,15 @@ type GenreResponse = {
   genres: GenreType[];
 };
 
-export default function FilterMenu() {
+export default function FilterMenu({
+  genreSeriesList,
+  setGenreSeriesList,
+  seriesList,
+  isFilteredByRelease,
+  setIsFilteredByRelease,
+}: Props) {
   const [genresList, setGenresList] = useState<GenreType[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
-  const [series, setSeries] = useState<RetrievedSeriesType[]>([]);
-  const [isFilteredByRelease, setIsFilteredByRelease] =
-    useState<boolean>(false);
   const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
   useEffect(() => {
@@ -38,7 +49,7 @@ export default function FilterMenu() {
     );
     const seriesData: RetrievedDataFromAPI = await res.json();
 
-    setSeries((prevSeries) => {
+    setGenreSeriesList((prevSeries) => {
       const newSeries = seriesData.results.filter(
         (newItem) => !prevSeries.some((item) => item.id === newItem.id)
       );
@@ -47,7 +58,7 @@ export default function FilterMenu() {
   };
 
   const removeSeriesByGenre = (genreId: number) => {
-    setSeries((prevSeries) =>
+    setGenreSeriesList((prevSeries) =>
       prevSeries.filter((item) => !item.genre_ids.includes(genreId))
     );
   };
@@ -65,16 +76,6 @@ export default function FilterMenu() {
   const toggleByReleaseDate = () => {
     setIsFilteredByRelease(!isFilteredByRelease);
   };
-
-  const allSeries = isFilteredByRelease
-    ? [...series].sort(
-        (a, b) =>
-          new Date(b.first_air_date).getTime() -
-          new Date(a.first_air_date).getTime()
-      )
-    : series;
-
-  console.log("allSeries: ", allSeries);
 
   return (
     <div className="space-y-5 w-1/6 px-4 xl:pr-4">
