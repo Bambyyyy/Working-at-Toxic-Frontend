@@ -25,7 +25,7 @@ export default async function PDP(props: { params: Promise<Params> }) {
     <main className="max-w-[80rem] mx-auto my-10 px-5 xl:p-0">
       {serieData ? (
         <div className="flex flex-col md:flex-row w-full">
-          <div className="w-full lg:w-1/2 relative aspect-[10/11]">
+          <div className="w-full lg:w-1/2 relative aspect-[3/4]">
             <Image
               src={
                 serieData.poster_path !== null
@@ -35,12 +35,18 @@ export default async function PDP(props: { params: Promise<Params> }) {
               alt={serieData.name}
               fill
               className="object-cover"
-              sizes="50vw"
+              sizes="(max-width: 767px) 100vw, 50vw"
             />
           </div>
-          <div className="w-full lg:w-1/2 p-4">
+          <div className="w-full lg:w-1/2 p-4 space-y-5">
             <h2 className="text-3xl my-5">{serieData.name}</h2>
-            <p>{serieData.overview}</p>
+            <div>
+              <p>Rating: {serieData.vote_average.toFixed(1)} / 10</p>
+              <p>Air date: {serieData.first_air_date}</p>
+            </div>
+            <div>
+              <p>{serieData.overview}</p>
+            </div>
           </div>
         </div>
       ) : (
