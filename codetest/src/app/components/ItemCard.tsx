@@ -20,7 +20,7 @@ export default function ItemCard({ serie }: Props) {
           alt={serie.name}
           fill
           className="object-cover"
-          sizes="25vw"
+          sizes="(max-width: 767px) 40vw, (max-width: 1023px) 33vw, 25vw"
         />
       </div>
       <div className="py-2">
