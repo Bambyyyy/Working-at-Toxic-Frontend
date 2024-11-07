@@ -37,12 +37,7 @@ export default function ItemList() {
   console.log(seriesList);
 
   return (
-    <main className="max-w-[80rem] mx-auto my-10 flex flex-row-reverse">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 xl:px-0 w-5/6">
-        {displayedSeries.map((item) => (
-          <ItemCard key={item.id} serie={item} />
-        ))}
-      </div>
+    <main className="max-w-[80rem] mx-auto my-10 flex flex-col lg:flex-row">
       <FilterMenu
         genreSeriesList={genreSeriesList}
         setGenreSeriesList={setGenreSeriesList}
@@ -50,6 +45,11 @@ export default function ItemList() {
         isFilteredByRelease={isFilteredByRelease}
         setIsFilteredByRelease={setIsFilteredByRelease}
       />
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 xl:px-0 w-full lg:w-5/6">
+        {displayedSeries.map((item) => (
+          <ItemCard key={item.id} serie={item} />
+        ))}
+      </div>
     </main>
   );
 }

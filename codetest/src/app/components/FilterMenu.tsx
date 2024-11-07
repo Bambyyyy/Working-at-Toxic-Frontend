@@ -78,16 +78,16 @@ export default function FilterMenu({
   };
 
   return (
-    <div className="space-y-5 w-1/6 px-4 xl:pr-4">
+    <div className="space-y-2 w-full lg:w-1/6 px-4 xl:pr-4 mb-2 lg:mb-0">
       {genresList && genresList.length ? (
         <>
           <h3 className="text-lg font-semibold">Filter by genre</h3>
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-row flex-wrap justify-start gap-2 lg:flex-col space-y-1 border-b-[1px] border-gray-300 pb-2 lg:border-nonex lg:pb-0x">
             {genresList.map((item, index) => (
               <button
                 onClick={() => toggleGenre(item.id)}
                 key={index}
-                className="w-full rounded-sm text-xs text-left"
+                className="w-auto lg:w-full rounded-sm text-xs text-left"
               >
                 <p
                   className={`${
@@ -108,8 +108,8 @@ export default function FilterMenu({
             <p
               className={`${
                 isFilteredByRelease
-                  ? "bg-black text-white"
-                  : "bg-transparent text-black"
+                  ? "bg-black text-white border-[1px] border-black"
+                  : "bg-transparent text-black border-[1px] border-black"
               } px-2 py-1 text-left rounded-lg text-xs w-fit transition-colors duration-300 ease-in-out`}
             >
               Sort by release
