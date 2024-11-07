@@ -53,10 +53,10 @@ export default function Search() {
         placeholder="Sök..."
         value={query}
         onChange={handleInputChange}
-        className="px-3 py-1 outline-none text-black rounded-lg w-72"
+        className="px-3 py-1 outline-none text-black rounded-lg w-52 md:w-72"
       />
       {searchResults && searchResults.length ? (
-        <div className="absolute top-12 left-0 w-full z-10 bg-white text-black flex flex-col items-start h-96 overflow-y-auto">
+        <div className="absolute top-12 left-0 w-full z-10 bg-white text-black border-2 rounded-lg border-black flex flex-col items-start h-96 overflow-y-auto">
           {searchResults.map((item) => (
             <SearchCard key={item.id} item={item} handleClick={handleClick} />
           ))}

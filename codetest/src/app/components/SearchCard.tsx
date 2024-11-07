@@ -30,7 +30,7 @@ export default function SearchCard({ item, handleClick }: Props) {
         />
       </div>
       <div className="flex flex-col w-3/4 justify-evenly">
-        <p className="text-sm truncate max-w-44">{item.name}</p>
+        <p className="text-sm truncate max-w-32 md:max-w-44">{item.name}</p>
         <p className="text-xs">Rating: {item.vote_average.toFixed(1)}</p>
         <p className="text-xs">LG: {item.original_language.toUpperCase()}</p>
       </div>
