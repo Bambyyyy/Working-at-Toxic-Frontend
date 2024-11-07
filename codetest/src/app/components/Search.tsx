@@ -7,25 +7,42 @@ import Image from "next/image";
 export default function Search() {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<RetrievedSeriesType[]>([]);
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
 
   useEffect(() => {
-    const fetchSerieData = async (query: string) => {
-      try {
-        const res = await fetch(`api/searchSeries?query=${query}`);
-        const data = await res.json();
-        console.log(data);
-        setSearchResults(data.results);
-      } catch (error) {
-        console.error();
-      }
-    };
-    fetchSerieData(query);
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, [query]);
 
+  useEffect(() => {
+    if (debouncedQuery) {
+      const fetchSerieData = async (query: string) => {
+        try {
+          const res = await fetch(
+            `http://localhost:3000/api/searchSeries?query=${query}`
+          );
+          const data: RetrievedDataFromAPI = await res.json();
+          setSearchResults(data.results);
+        } catch (error) {
+          console.error();
+        }
+      };
+      fetchSerieData(query);
+    } else {
+      setSearchResults([]);
+    }
+  }, [debouncedQuery]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTimeout(() => {
-      setQuery(e.target.value);
-    }, 2000);
+    setQuery(e.target.value);
+  };
+
+  const handleClick = () => {
+    setSearchResults([]);
+    setQuery("");
   };
 
   return (
@@ -33,6 +50,7 @@ export default function Search() {
       <input
         type="text"
         placeholder="Sök..."
+        value={query}
         onChange={handleInputChange}
         className="px-3 py-1 outline-none text-black rounded-lg w-72"
       />
@@ -40,8 +58,9 @@ export default function Search() {
         <div className="absolute top-12 left-0 w-full z-10 bg-white text-black flex flex-col items-start h-96 overflow-y-auto">
           {searchResults.map((item) => (
             <Link
-              href={`/`}
+              href={`/series/${item.id}`}
               key={item.id}
+              onClick={handleClick}
               className="hover:bg-gray-300 flex gap-x-2 w-full p-2"
             >
               <div className="relative w-16 h-20 overflow-hidden">
