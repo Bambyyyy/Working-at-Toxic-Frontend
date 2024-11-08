@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: { url: string | URL }) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("query");
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -25,7 +25,7 @@ export async function GET(request: { url: string | URL }) {
 
     const data = await res.json();
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "An error occurred while fetching data" },
       { status: 500 }
