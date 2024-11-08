@@ -39,9 +39,7 @@ export default function ItemList() {
   return (
     <main className="max-w-[80rem] mx-auto my-10 flex flex-col lg:flex-row">
       <FilterMenu
-        genreSeriesList={genreSeriesList}
         setGenreSeriesList={setGenreSeriesList}
-        seriesList={seriesList}
         isFilteredByRelease={isFilteredByRelease}
         setIsFilteredByRelease={setIsFilteredByRelease}
       />

@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import { RetrievedDataFromAPI, RetrievedSeriesType } from "../types/Series";
 
 type Props = {
-  genreSeriesList: RetrievedSeriesType[] | [];
   setGenreSeriesList: React.Dispatch<
     React.SetStateAction<RetrievedSeriesType[]>
   >;
-  seriesList: RetrievedSeriesType[] | [];
   isFilteredByRelease: boolean;
   setIsFilteredByRelease: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -22,9 +20,7 @@ type GenreResponse = {
 };
 
 export default function FilterMenu({
-  genreSeriesList,
   setGenreSeriesList,
-  seriesList,
   isFilteredByRelease,
   setIsFilteredByRelease,
 }: Props) {
