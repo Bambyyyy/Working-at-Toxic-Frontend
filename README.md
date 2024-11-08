@@ -26,5 +26,6 @@ Good luck! :)
 - Run the command "code ."
 - When vsCode or which ever program you're using create an .env.local file in the root of the application.
 - In this file you copy and paste this: "NEXT_PUBLIC_TMDB_API_KEY=YourKeyHere" without the quotation marks, and enter your own API-key from TheMovieDatabase API where it says "YourKeyHere".
-- When this is done just run the command npm start and it should be up running!
+- When this is done run the command "npm run build"
+- And lastly run the command "npm start" and it should be up running!
 - Go to your web browser and search for http://localhost:3000/ and the app should be running.
