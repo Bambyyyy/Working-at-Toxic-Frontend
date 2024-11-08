@@ -103,7 +103,7 @@ export default function FilterMenu({
           </div>
           <button
             onClick={toggleByReleaseDate}
-            className={`text-left rounded-lg text-xs w-full`}
+            className={`text-left rounded-lg text-xs w-fit`}
           >
             <p
               className={`${
