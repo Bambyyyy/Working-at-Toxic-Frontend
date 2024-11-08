@@ -25,7 +25,7 @@ export default function Search() {
           );
           const data: RetrievedDataFromAPI = await res.json();
           setSearchResults(data.results);
-        } catch (error) {
+        } catch {
           console.error();
         }
       };
